@@ -1,0 +1,2 @@
+# Prácticas de Kubernetes
+Estos son los ejercicios ya hechos de la classroom de SysOps de Basetis. Para soluciones más detalladas, visita la web de documentación: convenio-docs.data.pre.basetis.com
