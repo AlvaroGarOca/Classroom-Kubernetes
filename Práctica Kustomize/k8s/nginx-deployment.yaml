@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-skaffold
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx-skaffold
+  template:
+    metadata:
+      labels:
+        app: nginx-skaffold
+    spec:
+      containers:
+        - name: nginx
+          image: nginx:alpine
+          resources:
+            requests:
+              cpu: "50m"      # Minimum CPU reserved for this container (0.05 cores)
+              memory: "64Mi"  # Minimum memory reserved
+            limits:
+              cpu: "250m"     # Maximum CPU allowed (0.25 cores)
+              memory: "128Mi" # Maximum memory allowed
+          ports:
+            - containerPort: 80
+          volumeMounts:
+          - name: html
+            mountPath: /usr/share/nginx/html/
+      volumes:
+      - name: html
+        configMap:
+          name: nginx-configmap
+          
